@@ -82,7 +82,9 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    print(f"message = {event.message.text}")
     response = conversation.predict(input=event.message.text)
+    print(f"response = {response}")
     line_bot_api.reply_message(event.reply_token, TextSendMessage(text=response))
 
 
