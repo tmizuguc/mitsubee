@@ -43,7 +43,7 @@ prompt = ChatPromptTemplate.from_messages(
 # チャットモデル
 llm = ChatOpenAI(
     model_name="gpt-3.5-turbo",
-    max_tokens=64,
+    max_tokens=512,
     temperature=0.2,
     streaming=True,
     callback_manager=BaseCallbackManager([StreamingStdOutCallbackHandler()]),
