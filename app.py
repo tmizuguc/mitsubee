@@ -54,17 +54,6 @@ memory = ConversationBufferWindowMemory(k=3, return_messages=True)
 conversation = ConversationChain(memory=memory, prompt=prompt, llm=llm, verbose=True)
 
 
-@app.route("/")
-def hello_world():
-    response = conversation.predict(input="こんにちは！")
-    text = f"""
-    access token = {os.environ["CHANNEL_ACCESS_TOKEN"]}\n
-    channel secret = {os.environ["CHANNEL_SECRET"]}\n
-    response = {response}
-    """
-    return text
-
-
 @app.route("/callback", methods=["POST"])
 def callback():
     # get X-Line-Signature header value
@@ -88,9 +77,7 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    print(f"message = {event.message.text}")
     response = conversation.predict(input=event.message.text)
-    print(f"response = {response}")
     line_bot_api.reply_message(event.reply_token, TextSendMessage(text=response))
 
 
