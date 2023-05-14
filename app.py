@@ -56,21 +56,13 @@ conversation = ConversationChain(memory=memory, prompt=prompt, llm=llm, verbose=
 
 @app.route("/")
 def hello_world():
-    return "It Works!"
-
-
-@app.route("/check_environment")
-def check_environment():
-    print(os.environ["CHANNEL_ACCESS_TOKEN"])
-    print(os.environ["CHANNEL_SECRET"])
-    return "It Works!"
-
-
-@app.route("/check_line_1")
-def check_environment():
     response = conversation.predict(input="こんにちは！")
-    print(f"response = {response}")
-    return "It Works!"
+    text = f"""
+    access token = {os.environ["CHANNEL_ACCESS_TOKEN"]}\n
+    channel secret = {os.environ["CHANNEL_SECRET"]}\n
+    response = {response}
+    """
+    return text
 
 
 @app.route("/callback", methods=["POST"])
