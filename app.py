@@ -55,7 +55,11 @@ conversation = ConversationChain(memory=memory, prompt=prompt, llm=llm, verbose=
 
 @app.route("/")
 def hello_world():
-    return "It Works!"
+    return "It Works as Get!"
+
+@app.route("/", methods=["POST"])
+def hello_world():
+    return "It Works as Post!"
 
 @app.route("/callback", methods=["POST"])
 def callback():
