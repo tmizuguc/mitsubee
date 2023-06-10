@@ -54,11 +54,11 @@ memory = ConversationBufferWindowMemory(k=3, return_messages=True)
 conversation = ConversationChain(memory=memory, prompt=prompt, llm=llm, verbose=True)
 
 @app.route("/")
-def hello_world():
+def test_get():
     return "It Works as Get!"
 
 @app.route("/", methods=["POST"])
-def hello_world():
+def test_post():
     return "It Works as Post!"
 
 @app.route("/callback", methods=["POST"])
