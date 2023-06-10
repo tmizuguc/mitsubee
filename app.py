@@ -55,10 +55,14 @@ conversation = ConversationChain(memory=memory, prompt=prompt, llm=llm, verbose=
 
 @app.route("/")
 def test_get():
+    print("**GET**")
+    print(f"request.headers: {request.headers}")
+    print(f"request.body: {request.get_data(as_text=True)}")
     return "It Works as Get!"
 
 @app.route("/", methods=["POST"])
 def test_post():
+    print("**POST**")
     print(f"request.headers: {request.headers}")
     print(f"request.body: {request.get_data(as_text=True)}")
     return "It Works as Post!"
