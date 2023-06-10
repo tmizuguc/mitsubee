@@ -59,6 +59,8 @@ def test_get():
 
 @app.route("/", methods=["POST"])
 def test_post():
+    print(f"request.headers: {request.headers}")
+    print(f"request: {request}")
     return "It Works as Post!"
 
 @app.route("/callback", methods=["POST"])
